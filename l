@@ -4,7 +4,7 @@ local RunService = game:GetService("RunService")
 local TweenService = game:GetService("TweenService")
 local player = Players.LocalPlayer
 local screenGui = Instance.new("ScreenGui")
-screenGui.Name = "PanelRGB"
+screenGui.Name = "MEnu"
 screenGui.ResetOnSpawn = false
 screenGui.Parent = player:WaitForChild("PlayerGui")
 local frame = Instance.new("Frame")
@@ -29,7 +29,7 @@ local moveBtn = Instance.new("TextButton")
 moveBtn.Size = UDim2.new(0,160,0,45)
 moveBtn.Position = UDim2.new(0.5,-80,0.5,-10)
 moveBtn.BackgroundColor3 = Color3.fromRGB(35,35,35)
-moveBtn.Text = "OFF"
+moveBtn.Text = "Boton 1: OFF"
 moveBtn.TextColor3 = Color3.fromRGB(255,80,80)
 moveBtn.Font = Enum.Font.GothamBold
 moveBtn.TextSize = 18
@@ -71,20 +71,18 @@ local isRunning = false
 moveBtn.MouseButton1Click:Connect(function()
 isRunning = not isRunning
 if isRunning then
-moveBtn.Text = "ON"
+moveBtn.Text = "Stage 1: ON"
 moveBtn.TextColor3 = Color3.fromRGB(80,255,80)
 task.spawn(function()
 while isRunning do
 local char = player.Character
 if char and char:FindFirstChild("HumanoidRootPart") then
 local hrp = char.HumanoidRootPart
--- Movimiento 1 (1 segundo)
 local tween1 = TweenService:Create(hrp,TweenInfo.new(1,Enum.EasingStyle.Linear),{CFrame = CFrame.new(5.066667556762695,10.603286743164062,3.919901132583618)})
 tween1:Play()
 tween1.Completed:Wait()
 if not isRunning then break end
--- Movimiento 2 (3 segundos)
-local tween2 = TweenService:Create(hrp,TweenInfo.new(2,Enum.EasingStyle.Linear),{CFrame = CFrame.new(-16.488636016845703,6.857143402099609,284.7413024902344)})
+local tween2 = TweenService:Create(hrp,TweenInfo.new(1.5,Enum.EasingStyle.Linear),{CFrame = CFrame.new(-16.488636016845703,6.857143402099609,284.7413024902344)})
 tween2:Play()
 tween2.Completed:Wait()
 end
@@ -92,7 +90,7 @@ task.wait(0.1)
 end
 end)
 else
-moveBtn.Text = "OFF"
+moveBtn.Text = "Stage 1: OFF"
 moveBtn.TextColor3 = Color3.fromRGB(255,80,80)
 end
 end)
