@@ -29,8 +29,8 @@ local moveBtn = Instance.new("TextButton")
 moveBtn.Size = UDim2.new(0,160,0,45)
 moveBtn.Position = UDim2.new(0.5,-80,0.5,-10)
 moveBtn.BackgroundColor3 = Color3.fromRGB(35,35,35)
-moveBtn.Text = "Iniciar Ruta"
-moveBtn.TextColor3 = Color3.fromRGB(255,255,255)
+moveBtn.Text = "OFF"
+moveBtn.TextColor3 = Color3.fromRGB(255,80,80)
 moveBtn.Font = Enum.Font.GothamBold
 moveBtn.TextSize = 18
 moveBtn.Parent = frame
@@ -67,20 +67,32 @@ local delta = input.Position - dragStart
 frame.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
 end
 end)
+local isRunning = false
 moveBtn.MouseButton1Click:Connect(function()
+isRunning = not isRunning
+if isRunning then
+moveBtn.Text = "ON"
+moveBtn.TextColor3 = Color3.fromRGB(80,255,80)
+task.spawn(function()
+while isRunning do
 local char = player.Character
 if char and char:FindFirstChild("HumanoidRootPart") then
 local hrp = char.HumanoidRootPart
-local infoTween = TweenInfo.new(6,Enum.EasingStyle.Linear)
-moveBtn.Text = "Moviendo..."
-moveBtn.Active = false
-local tween1 = TweenService:Create(hrp,infoTween,{CFrame = CFrame.new(5.066667556762695,10.603286743164062,3.919901132583618)})
+-- Movimiento 1 (1 segundo)
+local tween1 = TweenService:Create(hrp,TweenInfo.new(1,Enum.EasingStyle.Linear),{CFrame = CFrame.new(5.066667556762695,10.603286743164062,3.919901132583618)})
 tween1:Play()
 tween1.Completed:Wait()
-local tween2 = TweenService:Create(hrp,infoTween,{CFrame = CFrame.new(-16.488636016845703,6.857143402099609,284.7413024902344)})
+if not isRunning then break end
+-- Movimiento 2 (3 segundos)
+local tween2 = TweenService:Create(hrp,TweenInfo.new(3,Enum.EasingStyle.Linear),{CFrame = CFrame.new(-16.488636016845703,6.857143402099609,284.7413024902344)})
 tween2:Play()
 tween2.Completed:Wait()
-moveBtn.Text = "Iniciar Ruta"
-moveBtn.Active = true
+end
+task.wait(0.1)
+end
+end)
+else
+moveBtn.Text = "OFF"
+moveBtn.TextColor3 = Color3.fromRGB(255,80,80)
 end
 end)
