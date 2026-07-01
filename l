@@ -88,11 +88,11 @@ task.spawn(function()
 while run2 do
 local hrp = player.Character and player.Character:FindFirstChild("HumanoidRootPart")
 if hrp then
-mover(hrp, Vector3.new(-2.5895214080810547,6.700801849365234,298.72705078125), 2)
+mover(hrp, Vector3.new(-2.5895214080810547,7.700801849365234,298.72705078125), 2)
 if not run2 then break end
-mover(hrp, Vector3.new(-21.688749313354492,6.700801849365234,298.72705078125), 0.1)
+mover(hrp, Vector3.new(-21.688749313354492,7.700801849365234,298.72705078125), 0.1)
 if not run2 then break end
-mover(hrp, Vector3.new(-16.488636016845703,6.857143402099609,506.7339782714844), 1.5)
+mover(hrp, Vector3.new(-16.488636016845703,7.857143402099609,506.7339782714844), 1.5)
 task.wait(0.8)
 end
 task.wait(0.1)
