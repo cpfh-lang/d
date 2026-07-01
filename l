@@ -78,11 +78,11 @@ while isRunning do
 local char = player.Character
 if char and char:FindFirstChild("HumanoidRootPart") then
 local hrp = char.HumanoidRootPart
-local tween1 = TweenService:Create(hrp,TweenInfo.new(1,Enum.EasingStyle.Linear),{CFrame = CFrame.new(5.066667556762695,10.603286743164062,3.919901132583618)})
+local tween1 = TweenService:Create(hrp,TweenInfo.new(0.5,Enum.EasingStyle.Linear),{CFrame = CFrame.new(5.066667556762695,10.603286743164062,3.919901132583618)})
 tween1:Play()
 tween1.Completed:Wait()
 if not isRunning then break end
-local tween2 = TweenService:Create(hrp,TweenInfo.new(1.5,Enum.EasingStyle.Linear),{CFrame = CFrame.new(-16.488636016845703,6.857143402099609,284.7413024902344)})
+local tween2 = TweenService:Create(hrp,TweenInfo.new(2,Enum.EasingStyle.Linear),{CFrame = CFrame.new(-16.488636016845703,6.857143402099609,284.7413024902344)})
 tween2:Play()
 tween2.Completed:Wait()
 end
