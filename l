@@ -8,8 +8,8 @@ screenGui.Name = "PanelRGB"
 screenGui.ResetOnSpawn = false
 screenGui.Parent = player:WaitForChild("PlayerGui")
 local frame = Instance.new("Frame")
-frame.Size = UDim2.new(0,220,0,120)
-frame.Position = UDim2.new(0.5,-110,0.5,-60)
+frame.Size = UDim2.new(0,220,0,180)
+frame.Position = UDim2.new(0.5,-110,0.5,-90)
 frame.BackgroundColor3 = Color3.fromRGB(20,20,20)
 frame.BorderSizePixel = 0
 frame.Active = true
@@ -25,75 +25,103 @@ title.TextColor3 = Color3.fromRGB(255,255,255)
 title.Font = Enum.Font.GothamBold
 title.TextSize = 16
 title.Parent = frame
-local moveBtn = Instance.new("TextButton")
-moveBtn.Size = UDim2.new(0,160,0,45)
-moveBtn.Position = UDim2.new(0.5,-80,0.5,-10)
-moveBtn.BackgroundColor3 = Color3.fromRGB(35,35,35)
-moveBtn.Text = "Stage 1: OFF"
-moveBtn.TextColor3 = Color3.fromRGB(255,80,80)
-moveBtn.Font = Enum.Font.GothamBold
-moveBtn.TextSize = 18
-moveBtn.Parent = frame
-local btnStroke = Instance.new("UIStroke")
-btnStroke.Thickness = 2
-btnStroke.Parent = moveBtn
+
+local function crearBoton(nombre, posY)
+local btn = Instance.new("TextButton")
+btn.Size = UDim2.new(0,160,0,45)
+btn.Position = UDim2.new(0.5,-80,0,posY)
+btn.BackgroundColor3 = Color3.fromRGB(35,35,35)
+btn.Text = nombre .. ": OFF"
+btn.TextColor3 = Color3.fromRGB(255,80,80)
+btn.Font = Enum.Font.GothamBold
+btn.TextSize = 18
+btn.Parent = frame
+local stroke = Instance.new("UIStroke")
+stroke.Thickness = 2
+stroke.Parent = btn
+return btn
+end
+
+local btn1 = crearBoton("Stage 1", 40)
+local btn2 = crearBoton("Stage 2", 100)
+
+local run1, run2 = false, false
+
+local function mover(hrp, cf, tiempo)
+local tween = TweenService:Create(hrp, TweenInfo.new(tiempo, Enum.EasingStyle.Linear), {CFrame = CFrame.new(cf)})
+tween:Play()
+tween.Completed:Wait()
+end
+
+btn1.MouseButton1Click:Connect(function()
+run1 = not run1
+run2 = false
+btn2.Text = "Stage 2: OFF"
+btn2.TextColor3 = Color3.fromRGB(255,80,80)
+btn1.Text = run1 and "Stage 1: ON" or "Stage 1: OFF"
+btn1.TextColor3 = run1 and Color3.fromRGB(80,255,80) or Color3.fromRGB(255,80,80)
+if run1 then
+task.spawn(function()
+while run1 do
+local hrp = player.Character and player.Character:FindFirstChild("HumanoidRootPart")
+if hrp then
+mover(hrp, Vector3.new(5.066667556762695,10.603286743164062,3.919901132583618), 0.1)
+if not run1 then break end
+mover(hrp, Vector3.new(-16.488636016845703,6.857143402099609,284.7413024902344), 2)
+task.wait(0.5)
+end
+task.wait(0.1)
+end
+end)
+end
+end)
+
+btn2.MouseButton1Click:Connect(function()
+run2 = not run2
+run1 = false
+btn1.Text = "Stage 1: OFF"
+btn1.TextColor3 = Color3.fromRGB(255,80,80)
+btn2.Text = run2 and "Stage 2: ON" or "Stage 2: OFF"
+btn2.TextColor3 = run2 and Color3.fromRGB(80,255,80) or Color3.fromRGB(255,80,80)
+if run2 then
+task.spawn(function()
+while run2 do
+local hrp = player.Character and player.Character:FindFirstChild("HumanoidRootPart")
+if hrp then
+mover(hrp, Vector3.new(-2.5895214080810547,6.700801849365234,298.72705078125), 2.5)
+if not run2 then break end
+mover(hrp, Vector3.new(-21.688749313354492,6.700801849365234,298.72705078125), 0.2)
+if not run2 then break end
+mover(hrp, Vector3.new(-16.488636016845703,6.857143402099609,506.7339782714844), 3)
+task.wait(0.5)
+end
+task.wait(0.1)
+end
+end)
+end
+end)
+
 RunService.RenderStepped:Connect(function()
 local hue = tick()%5/5
-local rgbColor = Color3.fromHSV(hue,1,1)
-frameStroke.Color = rgbColor
-btnStroke.Color = rgbColor
+frameStroke.Color = Color3.fromHSV(hue,1,1)
 end)
+
 local dragging, dragInput, dragStart, startPos
 frame.InputBegan:Connect(function(input)
 if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
 dragging = true
 dragStart = input.Position
 startPos = frame.Position
-input.Changed:Connect(function()
-if input.UserInputState == Enum.UserInputState.End then
-dragging = false
-end
-end)
-end
-end)
-frame.InputChanged:Connect(function(input)
-if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
-dragInput = input
 end
 end)
 UserInputService.InputChanged:Connect(function(input)
-if input == dragInput and dragging then
+if dragging and (input == dragInput or input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
 local delta = input.Position - dragStart
 frame.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
 end
 end)
-local isRunning = false
-moveBtn.MouseButton1Click:Connect(function()
-isRunning = not isRunning
-if isRunning then
-moveBtn.Text = "Stage 1: ON"
-moveBtn.TextColor3 = Color3.fromRGB(80,255,80)
-task.spawn(function()
-while isRunning do
-local char = player.Character
-if char and char:FindFirstChild("HumanoidRootPart") then
-local hrp = char.HumanoidRootPart
--- Paso 1 (1s)
-local tween1 = TweenService:Create(hrp,TweenInfo.new(1,Enum.EasingStyle.Linear),{CFrame = CFrame.new(5.066667556762695,10.603286743164062,3.919901132583618)})
-tween1:Play()
-tween1.Completed:Wait()
-if not isRunning then break end
--- Paso 2 (3s)
-local tween2 = TweenService:Create(hrp,TweenInfo.new(3,Enum.EasingStyle.Linear),{CFrame = CFrame.new(-16.488636016845703,6.857143402099609,284.7413024902344)})
-tween2:Play()
-tween2.Completed:Wait()
--- Espera 0.5s y vuelve a empezar
-task.wait(0.5)
-end
-end
-end)
-else
-moveBtn.Text = "Stage 1: OFF"
-moveBtn.TextColor3 = Color3.fromRGB(255,80,80)
+frame.InputEnded:Connect(function(input)
+if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+dragging = false
 end
 end)
