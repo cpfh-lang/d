@@ -84,7 +84,7 @@ tween1:Play()
 tween1.Completed:Wait()
 if not isRunning then break end
 -- Movimiento 2 (3 segundos)
-local tween2 = TweenService:Create(hrp,TweenInfo.new(3,Enum.EasingStyle.Linear),{CFrame = CFrame.new(-16.488636016845703,6.857143402099609,284.7413024902344)})
+local tween2 = TweenService:Create(hrp,TweenInfo.new(2,Enum.EasingStyle.Linear),{CFrame = CFrame.new(-16.488636016845703,6.857143402099609,284.7413024902344)})
 tween2:Play()
 tween2.Completed:Wait()
 end
