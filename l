@@ -79,8 +79,8 @@ local char = player.Character
 if char and char:FindFirstChild("HumanoidRootPart") then
 local hrp = char.HumanoidRootPart
 hrp.CFrame = CFrame.new(1.511355996131897,24.351192474365234,102.18516540527344)
-task.wait(0.5)
-local infoTween = TweenInfo.new(0.5,Enum.EasingStyle.Linear)
+task.wait(5)
+local infoTween = TweenInfo.new(6,Enum.EasingStyle.Linear)
 local tween = TweenService:Create(hrp,infoTween,{CFrame = CFrame.new(1.511355996131897,24.351192474365234,508.1856689453125)})
 tween:Play()
 tween.Completed:Wait()
