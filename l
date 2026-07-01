@@ -20,23 +20,23 @@ frameStroke.Parent = frame
 local title = Instance.new("TextLabel")
 title.Size = UDim2.new(1,0,0,30)
 title.BackgroundTransparency = 1
-title.Text = "Panel RGB"
+title.Text = "Panel Movimiento"
 title.TextColor3 = Color3.fromRGB(255,255,255)
 title.Font = Enum.Font.GothamBold
 title.TextSize = 16
 title.Parent = frame
-local farmBtn = Instance.new("TextButton")
-farmBtn.Size = UDim2.new(0,160,0,45)
-farmBtn.Position = UDim2.new(0.5,-80,0.5,-10)
-farmBtn.BackgroundColor3 = Color3.fromRGB(35,35,35)
-farmBtn.Text = "Farm: OFF"
-farmBtn.TextColor3 = Color3.fromRGB(255,80,80)
-farmBtn.Font = Enum.Font.GothamBold
-farmBtn.TextSize = 18
-farmBtn.Parent = frame
+local moveBtn = Instance.new("TextButton")
+moveBtn.Size = UDim2.new(0,160,0,45)
+moveBtn.Position = UDim2.new(0.5,-80,0.5,-10)
+moveBtn.BackgroundColor3 = Color3.fromRGB(35,35,35)
+moveBtn.Text = "Iniciar Ruta"
+moveBtn.TextColor3 = Color3.fromRGB(255,255,255)
+moveBtn.Font = Enum.Font.GothamBold
+moveBtn.TextSize = 18
+moveBtn.Parent = frame
 local btnStroke = Instance.new("UIStroke")
 btnStroke.Thickness = 2
-btnStroke.Parent = farmBtn
+btnStroke.Parent = moveBtn
 RunService.RenderStepped:Connect(function()
 local hue = tick()%5/5
 local rgbColor = Color3.fromHSV(hue,1,1)
@@ -67,30 +67,20 @@ local delta = input.Position - dragStart
 frame.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
 end
 end)
-local isFarming = false
-farmBtn.MouseButton1Click:Connect(function()
-isFarming = not isFarming
-if isFarming then
-farmBtn.Text = "Farm: ON"
-farmBtn.TextColor3 = Color3.fromRGB(80,255,80)
-task.spawn(function()
-while isFarming do
+moveBtn.MouseButton1Click:Connect(function()
 local char = player.Character
 if char and char:FindFirstChild("HumanoidRootPart") then
 local hrp = char.HumanoidRootPart
-hrp.CFrame = CFrame.new(1.511355996131897,24.351192474365234,102.18516540527344)
-task.wait(5)
 local infoTween = TweenInfo.new(6,Enum.EasingStyle.Linear)
-local tween = TweenService:Create(hrp,infoTween,{CFrame = CFrame.new(1.511355996131897,24.351192474365234,508.1856689453125)})
-tween:Play()
-tween.Completed:Wait()
-hrp.CFrame = CFrame.new(-16.488636016845703,6.857143402099609,506.7339782714844)
-end
-task.wait(2)
-end
-end)
-else
-farmBtn.Text = "Farm: OFF"
-farmBtn.TextColor3 = Color3.fromRGB(255,80,80)
+moveBtn.Text = "Moviendo..."
+moveBtn.Active = false
+local tween1 = TweenService:Create(hrp,infoTween,{CFrame = CFrame.new(5.066667556762695,10.603286743164062,3.919901132583618)})
+tween1:Play()
+tween1.Completed:Wait()
+local tween2 = TweenService:Create(hrp,infoTween,{CFrame = CFrame.new(-16.488636016845703,6.857143402099609,284.7413024902344)})
+tween2:Play()
+tween2.Completed:Wait()
+moveBtn.Text = "Iniciar Ruta"
+moveBtn.Active = true
 end
 end)
