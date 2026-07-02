@@ -3,6 +3,17 @@ local UserInputService = game:GetService("UserInputService")
 local RunService = game:GetService("RunService")
 local TweenService = game:GetService("TweenService")
 local player = Players.LocalPlayer
+
+-- Eliminar obstáculos al iniciar
+task.spawn(function()
+local npcPiege = game:GetService("Workspace"):FindFirstChild("NPC & Piege")
+if npcPiege then
+if npcPiege:FindFirstChild("LavaTower") then npcPiege.LavaTower:Destroy() end
+if npcPiege:FindFirstChild("CorridorTrap") then npcPiege.CorridorTrap:Destroy() end
+if npcPiege:FindFirstChild("NPC_Zone10") and npcPiege.NPC_Zone10:FindFirstChild("NPC10_AttackZone") then npcPiege.NPC_Zone10.NPC10_AttackZone:Destroy() end
+end
+end)
+
 local screenGui = Instance.new("ScreenGui")
 screenGui.Name = "PanelRGB"
 screenGui.ResetOnSpawn = false
@@ -75,17 +86,6 @@ btn1.Text = "Stage 1: OFF"; btn1.TextColor3 = Color3.fromRGB(255,80,80)
 btn2.Text = "Stage 2: OFF"; btn2.TextColor3 = Color3.fromRGB(255,80,80)
 btn3.Text = "Stage 3: OFF"; btn3.TextColor3 = Color3.fromRGB(255,80,80)
 btn4.Text = "Stage 1K: OFF"; btn4.TextColor3 = Color3.fromRGB(255,80,80)
-end
-local function monitorearMuerte(btn, runVar)
-player.CharacterAdded:Connect(function(char)
-local humanoid = char:WaitForChild("Humanoid")
-humanoid.Died:Connect(function()
-if runVar then
-task.wait(2)
-btn.MouseButton1Click:Invoke()
-end
-end)
-end)
 end
 btn1.MouseButton1Click:Connect(function()
 local activar = not run1
