@@ -157,7 +157,7 @@ btn4.MouseButton1Click:Connect(function()
                     if not run4 then break end
                     mover(hrp, Vector3.new(-1092.6707763671875, 294.3077087402344, 1467.7484130859375), 3)
                     if not run4 then break end
-                    mover(hrp, Vector3.new(-2992.939697265625, 294.30755615234375, 1470.4742431640625), 5)
+                    mover(hrp, Vector3.new(-2992.939697265625, 294.30755615234375, 1470.4742431640625), 7)
                     if not run4 then break end
                     mover(hrp, Vector3.new(-3938.4208984375, 294.501708984375, 1447.8897705078125), 5)
                     task.wait(0.5)
