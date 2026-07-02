@@ -169,7 +169,7 @@ local hrp = char and char:FindFirstChild("HumanoidRootPart")
 if hrp then
 mover(hrp, Vector3.new(21.965776443481445, 6.700801849365234, 6.971138954162598), 2)
 if not run4 then break end
-mover(hrp, Vector3.new(20.78496742248535, 6.700801849365234, 560.4197998046875), 2)
+mover(hrp, Vector3.new(20.78496742248535, 6.700801849365234, 560.4197998046875), 3.5)
 if not run4 then break end
 mover(hrp, Vector3.new(19.084335327148438, 73.54920959472656, 746.2933349609375), 2)
 if not run4 then break end
