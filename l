@@ -179,9 +179,12 @@ mover(hrp, Vector3.new(-527.2881469726562, 52.30767822265625, 1489.567626953125)
 if not run4 then break end
 mover(hrp, Vector3.new(-569.5850219726562, 52.30767822265625, 1467.7484130859375), 2)
 if not run4 then break end
-mover(hrp, Vector3.new(-3938.4208984375, 294.501708984375, 1447.8897705078125), 6)
+mover(hrp, Vector3.new(-1038.64501953125, 52.30767822265625, 1465.02001953125), 2)
 if not run4 then break end
-task.wait(1)
+mover(hrp, Vector3.new(-1092.6707763671875, 294.3077087402344, 1467.7484130859375), 2)
+if not run4 then break end
+mover(hrp, Vector3.new(-3938.4208984375, 294.501708984375, 1447.8897705078125), 6)
+task.wait(0.5)
 end
 task.wait(0.1)
 end
