@@ -8,8 +8,8 @@ screenGui.Name = "PanelRGB"
 screenGui.ResetOnSpawn = false
 screenGui.Parent = player:WaitForChild("PlayerGui")
 local frame = Instance.new("Frame")
-frame.Size = UDim2.new(0,220,0,230)
-frame.Position = UDim2.new(0.5,-110,0.5,-115)
+frame.Size = UDim2.new(0,220,0,285)
+frame.Position = UDim2.new(0.5,-110,0.5,-142)
 frame.BackgroundColor3 = Color3.fromRGB(20,20,20)
 frame.BorderSizePixel = 0
 frame.Active = true
@@ -60,19 +60,21 @@ stroke.Parent = btn
 return btn
 end
 local btn1 = crearBoton("Stage 1", 40)
-local btn2 = crearBoton("Stage 2", 100)
-local btn3 = crearBoton("Stage 3", 160)
-local run1, run2, run3 = false, false, false
+local btn2 = crearBoton("Stage 2", 95)
+local btn3 = crearBoton("Stage 3", 150)
+local btn4 = crearBoton("Stage 1K", 205)
+local run1, run2, run3, run4 = false, false, false, false
 local function mover(hrp, cf, tiempo)
 local tween = TweenService:Create(hrp, TweenInfo.new(tiempo, Enum.EasingStyle.Linear), {CFrame = CFrame.new(cf)})
 tween:Play()
 tween.Completed:Wait()
 end
 local function apagarTodo()
-run1 = false; run2 = false; run3 = false
+run1 = false; run2 = false; run3 = false; run4 = false
 btn1.Text = "Stage 1: OFF"; btn1.TextColor3 = Color3.fromRGB(255,80,80)
 btn2.Text = "Stage 2: OFF"; btn2.TextColor3 = Color3.fromRGB(255,80,80)
 btn3.Text = "Stage 3: OFF"; btn3.TextColor3 = Color3.fromRGB(255,80,80)
+btn4.Text = "Stage 1K: OFF"; btn4.TextColor3 = Color3.fromRGB(255,80,80)
 end
 btn1.MouseButton1Click:Connect(function()
 local activar = not run1
@@ -128,11 +130,45 @@ local hrp = player.Character and player.Character:FindFirstChild("HumanoidRootPa
 if hrp then
 mover(hrp, Vector3.new(21.965776443481445,6.700801849365234,6.971138954162598), 1)
 if not run3 then break end
-mover(hrp, Vector3.new(20.78496742248535,6.700801849365234,560.4197998046875), 4)
+mover(hrp, Vector3.new(20.78496742248535,6.700801849365234,560.4197998046875), 3)
 if not run3 then break end
 mover(hrp, Vector3.new(19.084335327148438,73.54920959472656,746.2933349609375), 1)
 if not run3 then break end
 mover(hrp, Vector3.new(-16.488636016845703,75.14604187011719,774.3751220703125), 1)
+task.wait(0.5)
+end
+task.wait(0.1)
+end
+end)
+end
+end)
+btn4.MouseButton1Click:Connect(function()
+local activar = not run4
+apagarTodo()
+run4 = activar
+if run4 then
+btn4.Text = "Stage 1K: ON"; btn4.TextColor3 = Color3.fromRGB(80,255,80)
+task.spawn(function()
+while run4 do
+local hrp = player.Character and player.Character:FindFirstChild("HumanoidRootPart")
+if hrp then
+mover(hrp, Vector3.new(21.965776443481445, 6.700801849365234, 6.971138954162598), 2)
+if not run4 then break end
+mover(hrp, Vector3.new(20.78496742248535, 6.700801849365234, 560.4197998046875), 2)
+if not run4 then break end
+mover(hrp, Vector3.new(19.084335327148438, 73.54920959472656, 746.2933349609375), 2)
+if not run4 then break end
+mover(hrp, Vector3.new(11.052309036254883, 74.95215606689453, 1422.516845703125), 2)
+if not run4 then break end
+mover(hrp, Vector3.new(-527.2881469726562, 52.30767822265625, 1489.567626953125), 2)
+if not run4 then break end
+mover(hrp, Vector3.new(-569.5850219726562, 52.30767822265625, 1467.7484130859375), 2)
+if not run4 then break end
+mover(hrp, Vector3.new(-1038.64501953125, 52.30767822265625, 1465.02001953125), 2)
+if not run4 then break end
+mover(hrp, Vector3.new(-1092.6707763671875, 294.3077087402344, 1467.7484130859375), 2)
+if not run4 then break end
+mover(hrp, Vector3.new(-2992.939697265625, 294.30755615234375, 1470.4742431640625), 2)
 task.wait(0.5)
 end
 task.wait(0.1)
