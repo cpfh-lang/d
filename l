@@ -76,6 +76,17 @@ btn2.Text = "Stage 2: OFF"; btn2.TextColor3 = Color3.fromRGB(255,80,80)
 btn3.Text = "Stage 3: OFF"; btn3.TextColor3 = Color3.fromRGB(255,80,80)
 btn4.Text = "Stage 1K: OFF"; btn4.TextColor3 = Color3.fromRGB(255,80,80)
 end
+local function monitorearMuerte(btn, runVar)
+player.CharacterAdded:Connect(function(char)
+local humanoid = char:WaitForChild("Humanoid")
+humanoid.Died:Connect(function()
+if runVar then
+task.wait(2)
+btn.MouseButton1Click:Invoke()
+end
+end)
+end)
+end
 btn1.MouseButton1Click:Connect(function()
 local activar = not run1
 apagarTodo()
@@ -84,7 +95,8 @@ if run1 then
 btn1.Text = "Stage 1: ON"; btn1.TextColor3 = Color3.fromRGB(80,255,80)
 task.spawn(function()
 while run1 do
-local hrp = player.Character and player.Character:FindFirstChild("HumanoidRootPart")
+local char = player.Character
+local hrp = char and char:FindFirstChild("HumanoidRootPart")
 if hrp then
 mover(hrp, Vector3.new(5.066667556762695,10.603286743164062,3.919901132583618), 0.3)
 if not run1 then break end
@@ -104,7 +116,8 @@ if run2 then
 btn2.Text = "Stage 2: ON"; btn2.TextColor3 = Color3.fromRGB(80,255,80)
 task.spawn(function()
 while run2 do
-local hrp = player.Character and player.Character:FindFirstChild("HumanoidRootPart")
+local char = player.Character
+local hrp = char and char:FindFirstChild("HumanoidRootPart")
 if hrp then
 mover(hrp, Vector3.new(-2.5895214080810547,7.700801849365234,298.72705078125), 1.5)
 if not run2 then break end
@@ -126,7 +139,8 @@ if run3 then
 btn3.Text = "Stage 3: ON"; btn3.TextColor3 = Color3.fromRGB(80,255,80)
 task.spawn(function()
 while run3 do
-local hrp = player.Character and player.Character:FindFirstChild("HumanoidRootPart")
+local char = player.Character
+local hrp = char and char:FindFirstChild("HumanoidRootPart")
 if hrp then
 mover(hrp, Vector3.new(21.965776443481445,6.700801849365234,6.971138954162598), 1)
 if not run3 then break end
@@ -150,7 +164,8 @@ if run4 then
 btn4.Text = "Stage 1K: ON"; btn4.TextColor3 = Color3.fromRGB(80,255,80)
 task.spawn(function()
 while run4 do
-local hrp = player.Character and player.Character:FindFirstChild("HumanoidRootPart")
+local char = player.Character
+local hrp = char and char:FindFirstChild("HumanoidRootPart")
 if hrp then
 mover(hrp, Vector3.new(21.965776443481445, 6.700801849365234, 6.971138954162598), 2)
 if not run4 then break end
@@ -160,7 +175,7 @@ mover(hrp, Vector3.new(19.084335327148438, 73.54920959472656, 746.2933349609375)
 if not run4 then break end
 mover(hrp, Vector3.new(11.052309036254883, 74.95215606689453, 1422.516845703125), 2)
 if not run4 then break end
-mover(hrp, Vector3.new(-527.2881469726562, 52.30767822265625, 1489.567626953125), 2)
+mover(hrp, Vector3.new(-527.2881469726562, 52.30767822265625, 1489.567626953125), 3.5)
 if not run4 then break end
 mover(hrp, Vector3.new(-569.5850219726562, 52.30767822265625, 1467.7484130859375), 2)
 if not run4 then break end
