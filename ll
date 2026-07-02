@@ -23,7 +23,7 @@ local Config = {
     Secret          = " e8122c5aaac82ab8efcb75bd652c841bd26af94051d9fbf14c901b13927ba9f9", -- This makes the script ONLY run from the key script. Even if they copy the original obfuscated script to bypass the key, they won't be able to!
     
     -- [3] Scripts & Links
-    MainScriptURL   = "https://raw.githubusercontent.com/cpfh-lang/d/refs/heads/main/l", -- The raw URL of your main script
+    MainScriptURL   = "https://raw.githubusercontent.com/cpfh-lang/d/refs/heads/main/Keyboard%20Speed", -- The raw URL of your main script
     
     -- [4] Social Media Settings (Set to true to show, false to hide)
     ShowDiscord     = false,
