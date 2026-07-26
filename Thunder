@@ -1,0 +1,159 @@
+local bpm = 133
+adjustVelocity(1)
+
+-- ==========================================
+-- DEFINICIÓN DE LAS PARTES (EL CEREBRO DEL SCRIPT)
+-- ==========================================
+
+-- 1. Tapping Inicial (El inicio que va subiendo)
+local function tocarIntro()
+    for i = 1, 8 do
+        keypress("a", 0.1, bpm) rest(0.25, bpm)
+        keypress("D", 0.1, bpm) rest(0.25, bpm)
+        keypress("a", 0.1, bpm) rest(0.25, bpm)
+        keypress("G", 0.1, bpm) rest(0.25, bpm)
+    end
+    for i = 1, 8 do
+        keypress("a", 0.1, bpm) rest(0.25, bpm)
+        keypress("f", 0.1, bpm) rest(0.25, bpm)
+        keypress("a", 0.1, bpm) rest(0.25, bpm)
+        keypress("h", 0.1, bpm) rest(0.25, bpm)
+    end
+end
+
+-- 2. El Descenso Rápido (El riff principal)
+local function tocarDescenso()
+    for i = 1, 2 do
+        keypress("a", 0.1, bpm) rest(0.25, bpm)
+        keypress("k", 0.1, bpm) rest(0.25, bpm)
+        keypress("a", 0.1, bpm) rest(0.25, bpm)
+        keypress("j", 0.1, bpm) rest(0.25, bpm)
+        
+        keypress("a", 0.1, bpm) rest(0.25, bpm)
+        keypress("H", 0.1, bpm) rest(0.25, bpm)
+        keypress("a", 0.1, bpm) rest(0.25, bpm)
+        keypress("j", 0.1, bpm) rest(0.25, bpm)
+        
+        keypress("a", 0.1, bpm) rest(0.25, bpm)
+        keypress("H", 0.1, bpm) rest(0.25, bpm)
+        keypress("a", 0.1, bpm) rest(0.25, bpm)
+        keypress("G", 0.1, bpm) rest(0.25, bpm)
+        
+        keypress("a", 0.1, bpm) rest(0.25, bpm)
+        keypress("H", 0.1, bpm) rest(0.25, bpm)
+        keypress("a", 0.1, bpm) rest(0.25, bpm)
+        keypress("f", 0.1, bpm) rest(0.25, bpm)
+        
+        keypress("a", 0.1, bpm) rest(0.25, bpm)
+        keypress("G", 0.1, bpm) rest(0.25, bpm)
+        keypress("a", 0.1, bpm) rest(0.25, bpm)
+        keypress("D", 0.1, bpm) rest(0.25, bpm)
+        
+        keypress("a", 0.1, bpm) rest(0.25, bpm)
+        keypress("f", 0.1, bpm) rest(0.25, bpm)
+        keypress("a", 0.1, bpm) rest(0.25, bpm)
+        keypress("D", 0.1, bpm) rest(0.25, bpm)
+        
+        keypress("a", 0.1, bpm) rest(0.25, bpm)
+        keypress("f", 0.1, bpm) rest(0.25, bpm)
+        keypress("a", 0.1, bpm) rest(0.25, bpm)
+        keypress("D", 0.1, bpm) rest(0.25, bpm)
+        
+        keypress("a", 0.1, bpm) rest(0.25, bpm)
+        keypress("f", 0.1, bpm) rest(0.25, bpm)
+        keypress("a", 0.1, bpm) rest(0.25, bpm)
+        keypress("D", 0.1, bpm) rest(0.25, bpm)
+    end
+end
+
+-- 3. Los Versos (Cuando Brian Johnson empieza a cantar)
+local function tocarVerso()
+    for i = 1, 16 do
+        -- Ritmo constante y pesado (Palm mute)
+        keypress("r", 0.1, bpm)
+        keypress("i", 0.1, bpm)
+        keypress("a", 0.1, bpm)
+        rest(0.5, bpm)
+    end
+end
+
+-- 4. El Coro (Los gritos de "Thunder!")
+local function tocarCoro()
+    for i = 1, 4 do
+        keypress("r", 0.1, bpm) keypress("i", 0.1, bpm) keypress("a", 0.1, bpm)
+        rest(2.0, bpm)
+        
+        keypress("e", 0.1, bpm) keypress("u", 0.1, bpm) keypress("p", 0.1, bpm)
+        rest(0.5, bpm)
+        
+        keypress("0", 0.1, bpm) keypress("r", 0.1, bpm) keypress("u", 0.1, bpm)
+        rest(2.0, bpm)
+        
+        keypress("e", 0.1, bpm) keypress("u", 0.1, bpm) keypress("p", 0.1, bpm)
+        rest(0.5, bpm)
+        
+        keypress("r", 0.1, bpm) keypress("i", 0.1, bpm) keypress("a", 0.1, bpm)
+        rest(1.0, bpm)
+    end
+end
+
+-- 5. El Puente (Los cánticos de estadio "Ahhh, ahhh")
+local function tocarPuente()
+    for i = 1, 2 do
+        keypress("0", 0.1, bpm) keypress("r", 0.1, bpm) keypress("u", 0.1, bpm)
+        rest(1.0, bpm)
+        
+        keypress("e", 0.1, bpm) keypress("u", 0.1, bpm) keypress("p", 0.1, bpm)
+        rest(1.0, bpm)
+        
+        keypress("r", 0.1, bpm) keypress("i", 0.1, bpm) keypress("a", 0.1, bpm)
+        rest(2.0, bpm)
+    end
+end
+
+-- 6. El Solo de Guitarra (Aproximación de notas rápidas)
+local function tocarSolo()
+    for i = 1, 4 do
+        keypress("k", 0.1, bpm) rest(0.25, bpm)
+        keypress("j", 0.1, bpm) rest(0.25, bpm)
+        keypress("H", 0.1, bpm) rest(0.25, bpm)
+        keypress("j", 0.1, bpm) rest(0.25, bpm)
+        
+        keypress("H", 0.1, bpm) rest(0.25, bpm)
+        keypress("G", 0.1, bpm) rest(0.25, bpm)
+        keypress("H", 0.1, bpm) rest(0.25, bpm)
+        keypress("f", 0.1, bpm) rest(0.25, bpm)
+        
+        keypress("G", 0.1, bpm) rest(0.25, bpm)
+        keypress("D", 0.1, bpm) rest(0.25, bpm)
+        keypress("f", 0.1, bpm) rest(0.25, bpm)
+        keypress("D", 0.1, bpm) rest(0.25, bpm)
+        
+        keypress("f", 0.1, bpm) rest(0.25, bpm)
+        keypress("D", 0.1, bpm) rest(0.25, bpm)
+        keypress("f", 0.1, bpm) rest(0.25, bpm)
+        keypress("D", 0.1, bpm) rest(0.25, bpm)
+    end
+end
+
+-- ==========================================
+-- ESTRUCTURA DE LA CANCIÓN (LA EJECUCIÓN REAL)
+-- ==========================================
+
+tocarIntro()       -- Empieza la magia
+tocarDescenso()    -- Entra la batería completa
+tocarCoro()        -- ¡Thunder!
+tocarVerso()       -- Primeros versos cantados
+tocarDescenso()    -- Riff de transición
+tocarVerso()       -- Segundos versos cantados
+tocarCoro()        -- ¡Thunder!
+tocarDescenso()    -- Preparación para el clímax
+tocarSolo()        -- Angus Young enloquece
+tocarPuente()      -- Cánticos de la multitud
+tocarCoro()        -- Último ¡Thunder!
+tocarDescenso()    -- Riff de cierre
+
+-- El gran acorde final para terminar la canción
+keypress("r", 0.1, bpm)
+keypress("i", 0.1, bpm)
+keypress("a", 0.1, bpm)
